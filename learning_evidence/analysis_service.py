@@ -9,11 +9,13 @@ from learning_evidence.warehouse.cohort_store import Repository
 from learning_evidence.rollout.scale_gates import advance_for_outcome, decide
 from learning_evidence.publication.scorecard import export_bundle, verify_bundle
 from learning_evidence.analytics.bias_adjustment import derive_context
+from learning_evidence.rollout.scale_reviews import ScaleReviews
 
 
 class Application:
     def __init__(self, database: str | Path, context: Mapping[str, Any] | None = None):
         self.repository = Repository(database)
+        self.scale_reviews = ScaleReviews(self.repository)
         self.context = dict(context or {})
 
     def ingest(self, record: DomainRecord) -> DomainRecord:
@@ -56,8 +58,11 @@ class Application:
         if snapshot["chain_errors"]:
             raise ContractError("audit chain verification failed")
         manifest = export_bundle(output, final_records, decisions, snapshot, self.repository.event_rows())
+        card = self.repository.publish_cohort_card(run_id, str(fixture.get("scenario") or "current cohort"),
+                                                   [record.record_id for record in final_records], decisions)
         result = {"run_id": run_id, "fixture_hash": fixture_hash, "records": len(final_records),
-                  "decisions": len(decisions), "manifest": manifest, "snapshot": snapshot}
+                  "decisions": len(decisions), "manifest": manifest, "snapshot": snapshot,
+                  "cohort_card": card}
         self.repository.finish_run(run_id, result)
         return result
 
