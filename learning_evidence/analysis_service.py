@@ -9,6 +9,7 @@ from learning_evidence.warehouse.cohort_store import Repository
 from learning_evidence.rollout.scale_gates import advance_for_outcome, decide
 from learning_evidence.publication.scorecard import export_bundle, verify_bundle
 from learning_evidence.analytics.bias_adjustment import derive_context
+from learning_evidence.analytics.missingness import build_review
 from learning_evidence.rollout.scale_reviews import ScaleReviews
 
 
@@ -57,14 +58,21 @@ class Application:
         snapshot = self.repository.snapshot()
         if snapshot["chain_errors"]:
             raise ContractError("audit chain verification failed")
-        manifest = export_bundle(output, final_records, decisions, snapshot, self.repository.event_rows())
+        review = self.evidence_review(basis={"run_id": run_id, "fixture_hash": fixture_hash})
+        manifest = export_bundle(output, final_records, decisions, snapshot, self.repository.event_rows(), review)
         card = self.repository.publish_cohort_card(run_id, str(fixture.get("scenario") or "current cohort"),
                                                    [record.record_id for record in final_records], decisions)
         result = {"run_id": run_id, "fixture_hash": fixture_hash, "records": len(final_records),
                   "decisions": len(decisions), "manifest": manifest, "snapshot": snapshot,
-                  "cohort_card": card}
+                  "cohort_card": card, "evidence_review": review}
         self.repository.finish_run(run_id, result)
         return result
+
+    def evidence_review(self, context: Mapping[str, Any] | None = None,
+                        basis: Mapping[str, Any] | None = None) -> dict[str, Any]:
+        merged = dict(self.context)
+        merged.update(context or {})
+        return build_review(self.repository.list_records(), merged, basis=basis)
 
     def inspect(self) -> dict[str, Any]:
         return {"snapshot": self.repository.snapshot(), "records": [record.__dict__ for record in self.repository.list_records()],

@@ -1,0 +1,157 @@
+{
+  "scenario": "缺失模式诊断与敏感性比较",
+  "synthetic": true,
+  "records": [
+    {
+      "record_id": "school-north-1",
+      "payload": {
+        "school_code": "school_code-0",
+        "grade_band": "grade_band-1",
+        "subject": "subject-2",
+        "learner_count": 18.5,
+        "usage_minutes": 21.0,
+        "baseline_score": 22.0,
+        "outcome_score": 24.5,
+        "missing_rate": 0.2,
+        "teacher_support": 0.4,
+        "connectivity": 0.6,
+        "language_group": "language_group-0",
+        "consent_rate": 0.9,
+        "region": "north"
+      },
+      "state": "registered",
+      "source": "synthetic-local-missing-pattern"
+    },
+    {
+      "record_id": "school-north-2",
+      "payload": {
+        "school_code": "school_code-1",
+        "grade_band": "grade_band-2",
+        "subject": "subject-3",
+        "learner_count": 20.5,
+        "usage_minutes": 23.0,
+        "missing_rate": 0.3,
+        "teacher_support": 0.5,
+        "connectivity": 0.7,
+        "language_group": "language_group-0",
+        "consent_rate": 0.85,
+        "region": "north"
+      },
+      "state": "registered",
+      "source": "synthetic-local-missing-pattern"
+    },
+    {
+      "record_id": "school-south-1",
+      "payload": {
+        "school_code": "school_code-2",
+        "grade_band": "grade_band-3",
+        "subject": "subject-4",
+        "learner_count": 22.5,
+        "baseline_score": 24.0,
+        "outcome_score": 26.0,
+        "missing_rate": 0.35,
+        "teacher_support": 0.45,
+        "connectivity": 0.55,
+        "language_group": "language_group-1",
+        "consent_rate": 0.7,
+        "region": "south"
+      },
+      "state": "registered",
+      "source": "synthetic-local-missing-pattern"
+    },
+    {
+      "record_id": "school-south-2",
+      "payload": {
+        "school_code": "school_code-3",
+        "grade_band": "grade_band-4",
+        "subject": "subject-0",
+        "learner_count": 24.5,
+        "usage_minutes": 25.0,
+        "baseline_score": 26.0,
+        "outcome_score": 27.5,
+        "missing_rate": 0.3,
+        "teacher_support": 0.5,
+        "connectivity": 0.65,
+        "language_group": "language_group-1",
+        "consent_rate": 0.4,
+        "region": "south"
+      },
+      "state": "registered",
+      "source": "synthetic-local-missing-pattern"
+    },
+    {
+      "record_id": "school-west-1",
+      "payload": {
+        "school_code": "school_code-4",
+        "grade_band": "grade_band-0",
+        "subject": "subject-1",
+        "learner_count": 26.5,
+        "missing_rate": 0.45,
+        "teacher_support": 0.6,
+        "connectivity": 0.5,
+        "language_group": "language_group-2",
+        "consent_rate": 0.9,
+        "region": "west"
+      },
+      "state": "registered",
+      "source": "synthetic-local-missing-pattern"
+    },
+    {
+      "record_id": "school-west-2",
+      "payload": {
+        "school_code": "school_code-0",
+        "grade_band": "grade_band-1",
+        "subject": "subject-2",
+        "learner_count": 28.5,
+        "usage_minutes": 29.0,
+        "baseline_score": 28.0,
+        "outcome_score": 31.0,
+        "missing_rate": 0.25,
+        "teacher_support": 0.55,
+        "connectivity": 0.75,
+        "language_group": "language_group-2",
+        "consent_rate": 0.95,
+        "region": "west"
+      },
+      "state": "registered",
+      "source": "synthetic-local-missing-pattern"
+    },
+    {
+      "record_id": "school-east-1",
+      "payload": {
+        "school_code": "school_code-1",
+        "grade_band": "grade_band-2",
+        "subject": "subject-3",
+        "learner_count": 30.5,
+        "usage_minutes": 27.0,
+        "missing_rate": 0.5,
+        "teacher_support": 0.65,
+        "connectivity": 0.45,
+        "language_group": "language_group-3",
+        "consent_rate": 0.8,
+        "region": "east"
+      },
+      "state": "registered",
+      "source": "synthetic-local-missing-pattern"
+    },
+    {
+      "record_id": "school-east-2",
+      "payload": {
+        "school_code": "school_code-2",
+        "grade_band": "grade_band-3",
+        "subject": "subject-4",
+        "learner_count": 32.5,
+        "baseline_score": 30.0,
+        "outcome_score": 32.0,
+        "missing_rate": 0.55,
+        "teacher_support": 0.7,
+        "connectivity": 0.4,
+        "language_group": "language_group-3",
+        "consent_rate": 0.6,
+        "region": "east"
+      },
+      "state": "registered",
+      "source": "synthetic-local-missing-pattern"
+    }
+  ]
+}
